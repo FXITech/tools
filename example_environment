@@ -26,7 +26,8 @@ ANDROID_SRC_PATH=/opt/buildroot/user/source_code
 MANIFEST_BRANCH_NAME=master
 MANIFEST_FILENAME=ics_dev.xml
 MANIFEST_REPO_URL=https://development.cstick.com/p/android/manifest
-REPO_TOOL_PATH=$BIN_PATH/repo
+REPO_TOOL_PATH=$SCRIPT_BIN_PATH/repo
+FXI_REPO_PATH=.
 
 # OPTIONAL
 #
