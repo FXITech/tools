@@ -28,9 +28,9 @@ fi
 ENV_FILE_PATH=$1
 source $ENV_FILE_PATH
 
-: ${ANDROID_TOOLCHAIN_URL:="http://releases.linaro.org/12.06/components/android/toolchain/4.7/android-toolchain-eabi-linaro-4.7-2012.06-3-2012-06-19_14-52-07-linux-x86.tar.bz2"}
-: ${ANDROID_TOOLCHAIN_VERSION:="arm-linux-androideabi-gcc (Linaro GCC 4.7-2012.06) 4.7.1 20120531 (prerelease)"}
-: ${ANDROID_TOOLCHAIN_MD5:="554c78e93ffbd33f54baf4c8b519e78b"}
+: ${ANDROID_TOOLCHAIN_VERSION:="arm-linux-androideabi-gcc (Linaro GCC 4.7-2012.07) 4.7.2 20120701 (prerelease)"}
+: ${ANDROID_TOOLCHAIN_URL:="https://releases.linaro.org/12.07/components/android/toolchain/4.7/android-toolchain-eabi-linaro-4.7-2012.07-1-2012-07-16_08-48-35-linux-x86.tar.bz2"}
+: ${ANDROID_TOOLCHAIN_MD5:="3d832975a2daaf28138040e4148fe095"}
 
 check_toolchain_version () {
   CURRENT_VERSION=`${TARGET_TOOLS_PREFIX}gcc --version | head -1`
