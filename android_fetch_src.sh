@@ -38,17 +38,14 @@ else
   exit 1
 fi
 
-$FXI_REPO_PATH/fxi_repo.sh init $ENV_FILE_PATH || { echo "fxi_repo.sh init failed"; exit 1; }
-# Repo tool do not provide (yet) possibility to have submodules in manifest
-# repository.
-# This temporary workaround is to allow you to include another manifest inside
-# existing one from git submodule.
+function fetch_local_manifest () {
+  if [ -n "$LOCAL_MANIFEST_REPO_URL" ]; then
+    LOCAL_MANIFEST_REPO_PATH="$ANDROID_SRC_PATH"/.repo/local_manifests
+    git clone -b "$LOCAL_MANIFEST_BRANCH_NAME" "$LOCAL_MANIFEST_REPO_URL" "$LOCAL_MANIFEST_REPO_PATH"
+  fi
+}
 
-MANIFEST_REPO_PATH=$ANDROID_SRC_PATH/.repo/manifests/
-if [ -f $MANIFEST_REPO_PATH/.gitmodules ];
-then
-  cd $MANIFEST_REPO_PATH
-  git submodule update --init
-  $FXI_REPO_PATH/fxi_repo.sh init $ENV_FILE_PATH || { echo "fxi_repo.sh init failed"; exit 1; }
-fi
+$FXI_REPO_PATH/fxi_repo.sh init $ENV_FILE_PATH || { echo "fxi_repo.sh init failed"; exit 1; }
+fetch_local_manifest
+
 $FXI_REPO_PATH/fxi_repo.sh sync $ENV_FILE_PATH || { echo "fxi_repo.sh sync failed"; exit 1; }
